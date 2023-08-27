@@ -1,0 +1,41 @@
+[
+    {
+      "function": "minecraft:set_lore",
+      "entity": "this",
+      "lore": [
+        [
+          {
+            "text": "\uE0F5",
+            "italic": false,
+            "color": "white"
+          },
+          {
+            "text": "\uF822攻撃力\uF828\uF824",
+            "color": "#cccccc",
+            "italic": false
+          },
+          {
+            "text": "|\uF824",
+            "color": "#888888",
+            "italic": false
+          },
+          {
+            "text": "+",
+            "color": "red",
+            "italic": false
+          },
+          {
+            "nbt": "CustomGive.Stats.Damage",
+            "storage": "usjm:items",
+            "color": "red",
+            "italic": false
+          },
+          {
+            "text": "\uF824"
+          }
+        ]
+      ],
+      "replace": false
+    }
+  ]
+  

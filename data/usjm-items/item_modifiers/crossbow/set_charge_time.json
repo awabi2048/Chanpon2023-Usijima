@@ -1,0 +1,17 @@
+[
+    {
+        "function": "copy_nbt",
+        "source": {
+            "type": "storage",
+            "source": "usjm:items"
+        },
+        "ops": [
+            {
+            "op": "replace",
+            "source": "ChargeTime",
+            "target": "Usjm.ItemStats.ChargeTime"
+            }
+        ]
+    }
+  ]
+  

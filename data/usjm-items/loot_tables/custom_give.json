@@ -1,0 +1,34 @@
+{
+    "pools": [
+      {
+        "rolls": 1,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "minecraft:stick",
+            "functions": [
+              {
+                "function": "minecraft:copy_nbt",
+                "source": {
+                  "type": "minecraft:storage",
+                  "source": "usjm:items"
+                },
+                "ops": [
+                  {
+                    "source": "CustomGive.Stats",
+                    "target": "Usjm.ItemStats",
+                    "op": "replace"
+                  }
+                ]
+              },
+              {
+                "function": "set_nbt",
+                "tag": "{Unbreakable:true,HideFlags:127}"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  

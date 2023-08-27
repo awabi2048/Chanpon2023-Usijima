@@ -1,0 +1,19 @@
+{
+    "criteria": {
+      "requirement": {
+        "trigger": "minecraft:player_interacted_with_entity",
+        "conditions": {
+          "player": {
+            "nbt": "{Tags:[\"Usjm.Player\"]}"
+          },
+          "entity": {
+            "nbt": "{Tags:[\"Usjm.Interaction\"]}"
+          }
+        }
+      }
+    },
+    "rewards": {
+      "function": "usjm-core:click_detection/right"
+    }
+  }
+  

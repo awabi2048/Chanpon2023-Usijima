@@ -1,0 +1,17 @@
+[
+    {
+        "function": "copy_nbt",
+        "source": {
+            "type": "storage",
+            "source": "usjm:items"
+        },
+        "ops": [
+            {
+            "op": "replace",
+            "source": "CustomGive.Other.ItemType",
+            "target": "Usjm.ItemType"
+            }
+        ]
+    }
+  ]
+  

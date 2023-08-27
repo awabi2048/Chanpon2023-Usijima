@@ -1,0 +1,41 @@
+[
+    {
+      "function": "minecraft:set_lore",
+      "entity": "this",
+      "lore": [
+        [
+          {
+            "text": "\uE0F6",
+            "italic": false,
+            "color": "white"
+          },
+          {
+            "text": "\uF822運\uF829\uF828\uF826",
+            "color": "#cccccc",
+            "italic": false
+          },
+          {
+            "text": "|\uF824",
+            "color": "#888888",
+            "italic": false
+          },
+          {
+            "text": "+",
+            "color": "yellow",
+            "italic": false
+          },
+          {
+            "nbt": "CustomGive.Stats.Luck",
+            "storage": "usjm:items",
+            "color": "yellow",
+            "italic": false
+          },
+          {
+            "text": "\uF824"
+          }
+        ]
+      ],
+      "replace": false
+    }
+  ]
+  

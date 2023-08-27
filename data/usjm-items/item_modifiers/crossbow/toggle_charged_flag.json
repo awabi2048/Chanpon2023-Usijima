@@ -1,0 +1,27 @@
+[
+    {
+      "function": "minecraft:set_nbt",
+      "tag": "{Usjm:{Misc:{Charged:false}}}",
+      "conditions": [
+        {
+          "condition": "reference",
+          "name": "usjm-items:holding_item/tag/crossbow_charged"
+        }
+      ]
+    },
+    {
+      "function": "minecraft:set_nbt",
+      "tag": "{Usjm:{Misc:{Charged:true}}}",
+      "conditions": [
+        {
+          "condition": "inverted",
+          "term": 
+          {
+            "condition": "reference",
+            "name": "usjm-items:holding_item/tag/crossbow_charged"
+          }
+        }
+      ]
+    }
+  ]
+  

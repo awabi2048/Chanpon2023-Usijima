@@ -1,0 +1,41 @@
+[
+    {
+      "function": "minecraft:set_lore",
+      "entity": "this",
+      "lore": [
+        [
+          {
+            "text": "\uE0F0",
+            "italic": false,
+            "color": "white"
+          },
+          {
+            "text": "\uF822体力\uF829\uF824\uF821",
+            "color": "#cccccc",
+            "italic": false
+          },
+          {
+            "text": "|\uF824",
+            "color": "#888888",
+            "italic": false
+          },
+          {
+            "text": "+",
+            "color": "green",
+            "italic": false
+          },
+          {
+            "nbt": "CustomGive.Stats.Health",
+            "storage": "usjm:items",
+            "color": "green",
+            "italic": false
+          },
+          {
+            "text": "\uF824"
+          }
+        ]
+      ],
+      "replace": false
+    }
+  ]
+  

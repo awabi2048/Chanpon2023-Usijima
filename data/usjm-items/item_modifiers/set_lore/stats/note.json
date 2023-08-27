@@ -1,0 +1,33 @@
+[
+    {
+      "function": "minecraft:set_lore",
+      "entity": "this",
+      "lore": [
+        [
+          {
+            "text": " "
+          }
+        ],
+        [
+          {
+            "text": "|",
+            "color": "white",
+            "italic": false
+          },
+          {
+            "text": "\uF824ステータス\uF824",
+            "color": "white",
+            "bold": false,
+            "italic": false
+          },
+          {
+            "text": "|",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      ],
+      "replace": false
+    }
+  ]
+  

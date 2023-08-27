@@ -1,0 +1,18 @@
+[
+    {
+      "function": "minecraft:set_lore",
+      "entity": "this",
+      "lore": [
+        [
+          {
+            "text": "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",
+            "color": "gray",
+            "bold": true,
+            "italic": false
+          }
+        ]
+      ],
+      "replace": false
+    }
+  ]
+  

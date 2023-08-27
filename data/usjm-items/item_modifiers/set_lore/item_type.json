@@ -1,0 +1,38 @@
+[
+    {
+      "function": "minecraft:set_lore",
+      "entity": "this",
+      "lore": [
+        [
+          {
+            "text": "<<\uF823",
+            "color": "white",
+            "italic": false
+          },
+          {
+            "nbt": "CustomGive.Other.ItemType",
+            "storage": "usjm:items",
+            "bold": false
+          },
+          {
+            "text": " | ",
+            "color": "gray",
+            "bold": false
+          },
+          {
+            "nbt": "CustomGive.Lore.ItemRarity",
+            "storage": "usjm:items",
+            "interpret": true,
+            "bold": false
+          },
+          {
+            "text": "\uF823>>",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      ],
+      "replace": false
+    }
+  ]
+  

@@ -1,0 +1,20 @@
+{
+    "pools": [
+      {
+        "rolls": 1,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "minecraft:stick",
+            "functions": [
+              {
+                "function": "minecraft:set_nbt",
+                "tag": "{CustomModelData:3090001,Usjm:{Custom:{DamageDisplayModified:false}}}"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  

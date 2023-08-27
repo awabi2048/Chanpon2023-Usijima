@@ -1,0 +1,19 @@
+{
+    "criteria": {
+      "requirement": {
+        "trigger": "minecraft:using_item",
+        "conditions": {
+          "player": {
+            "nbt": "{Tags:[\"Usjm.Player\"]}"
+          },
+          "item": {
+            "nbt": "{Usjm:{ItemType:\"Bow\"}}"
+          }
+        }
+      }
+    },
+    "rewards": {
+      "function": "usjm-combat:player_attack/bow/charging"
+    }
+  }
+  

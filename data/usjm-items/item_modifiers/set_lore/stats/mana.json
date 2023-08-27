@@ -1,0 +1,41 @@
+[
+    {
+      "function": "minecraft:set_lore",
+      "entity": "this",
+      "lore": [
+        [
+          {
+            "text": "\uE0F3",
+            "italic": false,
+            "color": "white"
+          },
+          {
+            "text": "\uF823魔法力\uF828\uF824",
+            "color": "#cccccc",
+            "italic": false
+          },
+          {
+            "text": "|\uF824",
+            "color": "#888888",
+            "italic": false
+          },
+          {
+            "text": "+",
+            "color": "aqua",
+            "italic": false
+          },
+          {
+            "nbt": "CustomGive.Stats.Mana",
+            "storage": "usjm:items",
+            "color": "aqua",
+            "italic": false
+          },
+          {
+            "text": "\uF824"
+          }
+        ]
+      ],
+      "replace": false
+    }
+  ]
+  

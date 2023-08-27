@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:entity_hurt_player",
+      "conditions": {
+        "player": {
+          "nbt": "{Tags:[\"Usjm.Player\"]}"
+        },
+        "damage": {
+          "type": {
+            "source_entity": {
+              "nbt": "{Tags:[\"Usjm.Mobs-Main\"]}"
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "usjm-combat:player_damaged/by_enemy"
+  }
+}

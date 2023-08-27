@@ -1,0 +1,41 @@
+[
+    {
+      "function": "minecraft:set_lore",
+      "entity": "this",
+      "lore": [
+        [
+          {
+            "text": "\uE0F1",
+            "italic": false,
+            "color": "white"
+          },
+          {
+            "text": "\uF822防御力\uF828\uF824",
+            "color": "#cccccc",
+            "italic": false
+          },
+          {
+            "text": "|\uF824",
+            "color": "#888888",
+            "italic": false
+          },
+          {
+            "text": "+",
+            "color": "green",
+            "italic": false
+          },
+          {
+            "nbt": "CustomGive.Stats.Defence",
+            "storage": "usjm:items",
+            "color": "green",
+            "italic": false
+          },
+          {
+            "text": "\uF824"
+          }
+        ]
+      ],
+      "replace": false
+    }
+  ]
+  
