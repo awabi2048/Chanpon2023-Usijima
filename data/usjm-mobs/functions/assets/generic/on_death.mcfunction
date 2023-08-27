@@ -10,8 +10,6 @@ tp ~ ~-300 ~
 kill @s
 
 #> ルート
-# Loot Table
-
 # Luckの値を+100
 scoreboard players add @p[tag=Usjm.AttackerPlayer] Usjm.PlayerStats.Luck 100
 

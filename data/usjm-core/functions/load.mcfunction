@@ -3,7 +3,9 @@ function usjm-mobs:load
 function usjm-player_stats:load
 function usjm-combat:load
 function usjm-menu:load
+function usjm-mobs:load
 function usjm-npc:load
+function usjm-quest:load
 
 # 当たり判定用
 team add Usjm.NoCollision

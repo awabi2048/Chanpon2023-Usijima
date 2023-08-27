@@ -28,7 +28,38 @@ execute if data storage usjm:combat {DamageProcessing:{Type:"Magical"}} run func
     # 体力が0以下なら死亡処理
     execute on passengers on passengers run data modify storage usjm:combat DiedMobData set from entity @s data.Usjm.Mobs
     execute if score $MobHealth Usjm.Temp matches ..0 run function usjm-mobs:on_death
-    
+
+#> 討伐クエストの判定
+# プレイヤーの受注中のクエストを取得
+execute store result storage usjm:quest Search.in int 1 run scoreboard players get @p[tag=Usjm.AttackerPlayer] Usjm.Questing-Id
+
+# データベースから検索
+data modify storage usjm:quest Search.Index set from storage usjm:quest Index
+
+data modify storage usjm:quest Search.out set value {}
+function usjm-quest:search
+
+# クエストの目標値を取得
+execute store result score $QuestTarget Usjm.Temp run data get storage usjm:quest Search.out.Subject.Count
+
+# MobのIdが一致すれば討伐数に加算
+execute store success storage usjm:mobs QuestRelated byte 1 on passengers on passengers run data modify storage usjm:quest Search.out.Id set from entity @s data.Usjm.Mobs.Id
+
+execute if data storage usjm:mobs {QuestRelated:0b} run data modify storage usjm:mobs QuestRelated set value true
+execute if data storage usjm:mobs {QuestRelated:1b} run data modify storage usjm:mobs QuestRelated set value false
+
+
+# 進捗度合いを通知
+execute if data storage usjm:quest {Search:{out:{Type:"Main"}}} run data modify storage usjm:quest AcceptedType set value '{"text":"メインクエスト","color":"red"}'
+execute if data storage usjm:quest {Search:{out:{Type:"Sub"}}} run data modify storage usjm:quest AcceptedType set value '{"text":"サブクエスト","color":"aqua"}'
+
+execute if data storage usjm:mobs {QuestRelated:true} run scoreboard players add @p[tag=Usjm.AttackerPlayer] Usjm.Questing-Progress 1
+execute if data storage usjm:mobs {QuestRelated:true} run tellraw @p[tag=Usjm.AttackerPlayer] [{"text": "［","color": "white"},{"nbt":"AcceptedType","storage": "usjm:quest","interpret": true},{"text": "］","color": "white"},"\uF824",{"text": "『","color": "white","bold": true},{"nbt":"Search.out.DisplayName","storage": "usjm:quest","bold": true,"interpret": true,"color": "white"},{"text": "』","color": "white","bold": true},{"text": "(","color": "white","bold": false},{"score":{"name": "@p[tag=Usjm.AttackerPlayer]","objective": "Usjm.Questing-Progress"},"color": "yellow"},{"text": "/","color": "gray"},{"nbt":"Search.out.Subject.Count","storage": "usjm:quest","color": "gray"},{"text": ")","color": "white"}]
+
+# 終了判定
+execute store result score $QuestSubject Usjm.Temp run data get storage usjm:quest Search.out.Subject.Count
+execute if score @p[tag=Usjm.AttackerPlayer] Usjm.Questing-Progress = $QuestSubject Usjm.Temp as @p[tag=Usjm.AttackerPlayer] run function usjm-quest:assets/generic/on_finish
+
 
 #> ダメージ表示
 function usjm-combat:player_attack/damage_process/digit_display/_

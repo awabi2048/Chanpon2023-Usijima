@@ -23,13 +23,8 @@ data modify storage usjm:npc SpawnData.QuestStatus set value "Idle"
     # .Main
     data modify storage usjm:npc SpawnData.Dialogue.Content.Main append value {"text":'{"text":"こんにちは"}'}
     data modify storage usjm:npc SpawnData.Dialogue.Content.Main append value {"text":'{"text":"これが会話です"}'}
-    data modify storage usjm:npc SpawnData.Dialogue.Content.Main append value {"text":'{"text":"あばばばば"}',Quest:{Id:"0000-template",Rewards:{Gold:100,Exp:0},Name:'{"text":"クエストのテンプレート"}',Description:{Info:['{"text":"あいうえお"}','{"text":"かきくけこ"}','{"text":"さしすせそ"}'],Subject:'{"text":"洞窟のゾンビの討伐 (0/5)"}'}}}
-    data modify storage usjm:npc SpawnData.Dialogue.Content.Main append value {"text":'{"text":"さようなら(3)"}'}
-    data modify storage usjm:npc SpawnData.Dialogue.Content.Main append value {"text":'{"text":"早く済ませなさい"}'}
-
-    # .AfterQuest
-    data modify storage usjm:npc SpawnData.Dialogue.Content.AfterQuest append value {"text":'{"text":"ありがとう"}'}
-    data modify storage usjm:npc SpawnData.Dialogue.Content.AfterQuest append value {"text":'{"text":"ありがとうだ"}'}
+    data modify storage usjm:npc SpawnData.Dialogue.Content.Main append value {"Quest":{Id:1,Name:"0001-zombie_slayer"}}
+    data modify storage usjm:npc SpawnData.Dialogue.Content.Main append value {"text":'{"text":"さようなら(3) 分からなくなったらまた"}'}
     
     # .DuringQuest
     data modify storage usjm:npc SpawnData.Dialogue.Content.DuringQuest append value {"text":'{"text":"クエスト進行中1"}'}

@@ -5,7 +5,6 @@ tag @s add Usjm.AttackerPlayer
 execute if predicate usjm-combat:holding_item/sword anchored eyes run function usjm-combat:ray_tracing/sword
 execute if predicate usjm-combat:holding_item/hammer anchored eyes run function usjm-combat:ray_tracing/hammer
 execute if predicate usjm-combat:holding_item/spear anchored eyes run function usjm-combat:ray_tracing/spear
-execute if predicate usjm-combat:holding_item/sickle anchored eyes run function usjm-combat:ray_tracing/sickle
 
 
 data modify storage usjm:combat TargetedMobExist set value false

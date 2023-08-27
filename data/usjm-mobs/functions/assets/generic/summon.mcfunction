@@ -3,8 +3,12 @@
 # 召喚 
 summon marker ~ ~ ~ {Tags:["Usjm.Mobs.Marker"]} 
 
-# データを移動
-data modify entity @e[tag=Usjm.Mobs.Marker,sort=nearest,limit=1] data.Usjm.Mobs set from storage usjm:mobs SpawnData
+# データを検索, 移動
+data modify storage usjm:mobs Search.Index set from storage usjm:mobs Index
+data modify storage usjm:mobs Search.in set from storage usjm:mobs SpawnData.Id
+function usjm-mobs:search
+
+data modify entity @e[tag=Usjm.Mobs.Marker,sort=nearest,limit=1] data.Usjm.Mobs set from storage usjm:mobs Search.out
 
 #> 付属エンティティの用意
 # text_display → 表示名・体力(数値)・体力(ゲージ)
