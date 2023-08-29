@@ -25,8 +25,8 @@
             "italic": false
           },
           {
-            "nbt": "CustomGive.Stats.Defence",
-            "storage": "usjm:items",
+            "nbt": "Search.out.ItemStats.Defence",
+            "storage": "usjm:index",
             "color": "green",
             "italic": false
           },

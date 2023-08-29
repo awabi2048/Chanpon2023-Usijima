@@ -25,8 +25,8 @@
             "italic": false
           },
           {
-            "nbt": "CustomGive.Stats.Luck",
-            "storage": "usjm:items",
+            "nbt": "Search.out.ItemStats.Luck",
+            "storage": "usjm:index",
             "color": "yellow",
             "italic": false
           },

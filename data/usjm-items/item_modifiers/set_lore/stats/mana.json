@@ -25,8 +25,8 @@
             "italic": false
           },
           {
-            "nbt": "CustomGive.Stats.Mana",
-            "storage": "usjm:items",
+            "nbt": "Search.out.ItemStats.Mana",
+            "storage": "usjm:index",
             "color": "aqua",
             "italic": false
           },

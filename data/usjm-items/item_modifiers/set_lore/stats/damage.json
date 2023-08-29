@@ -25,8 +25,8 @@
             "italic": false
           },
           {
-            "nbt": "CustomGive.Stats.Damage",
-            "storage": "usjm:items",
+            "nbt": "Search.out.ItemStats.Damage",
+            "storage": "usjm:index",
             "color": "red",
             "italic": false
           },

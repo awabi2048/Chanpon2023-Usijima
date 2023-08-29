@@ -8,3 +8,11 @@ execute at @a[tag=Usjm.Player-SkillSelect] as @e[tag=Usjm.Marker-SkillSelect,dis
 
 # ダメージ表示を削除
 execute at @a[tag=Usjm.Player] as @e[tag=Usjm.Combat.DamageDisplay-Item,distance=..64] if data entity @s {OnGround:true} run function usjm-combat:player_attack/damage_process/digit_display/remove
+
+#> Magic
+# タイマー → 一定時間操作なかったらキャンセル
+execute as @a[tag=Usjm.Player] if score @s Usjm.Combat.Magic.Casting-Timer matches 1.. run scoreboard players remove @s Usjm.Combat.Magic.Casting-Timer 1
+execute as @a[tag=Usjm.Player] if score @s Usjm.Combat.Magic.Casting-Timer matches 0 at @s run function usjm-combat:magic/casting/cancel
+
+# tick
+execute as @a[tag=Usjm.Player] at @s as @e[tag=Usjm.Combat.Magic-Marker,distance=..64] if score @s Usjm.Link = @p Usjm.UUID at @s run function usjm-combat:magic/assets/generic/tick

@@ -5,13 +5,13 @@
       "lore": [
         [
           {
-            "text": "\uE0F0",
+            "text": "\uE0F8",
             "italic": false,
             "color": "white"
           },
           {
-            "text": "\uF822体力\uF829\uF824\uF821",
-            "color": "#cccccc",
+            "text": "\uF822速度\uF829\uF824\uF821",
+            "color": "#ffffff",
             "italic": false
           },
           {
@@ -21,13 +21,13 @@
           },
           {
             "text": "+",
-            "color": "green",
+            "color": "#ffffff",
             "italic": false
           },
           {
-            "nbt": "Search.out.ItemStats.Health",
+            "nbt": "Search.out.ItemStats.Speed",
             "storage": "usjm:index",
-            "color": "green",
+            "color": "#ffffff",
             "italic": false
           },
           {

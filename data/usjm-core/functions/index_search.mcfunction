@@ -9,3 +9,4 @@ execute if data storage usjm:index {Search:{CompareSucceeded:false}} run data mo
 # true → 不一致時: [0]を削除, データがあれば再帰
 execute if data storage usjm:index {Search:{CompareSucceeded:true}} run data remove storage usjm:index Search.Index[0]
 execute if data storage usjm:index {Search:{CompareSucceeded:true}} if data storage usjm:index Search.Index[0] run function usjm-core:index_search
+

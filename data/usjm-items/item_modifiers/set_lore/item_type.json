@@ -10,8 +10,9 @@
             "italic": false
           },
           {
-            "nbt": "CustomGive.Other.ItemType",
+            "nbt": "PlaceItem.Lore.ItemType",
             "storage": "usjm:items",
+            "color": "#aaaaaa",
             "bold": false
           },
           {
@@ -20,7 +21,7 @@
             "bold": false
           },
           {
-            "nbt": "CustomGive.Lore.ItemRarity",
+            "nbt": "PlaceItem.Lore.Rarity",
             "storage": "usjm:items",
             "interpret": true,
             "bold": false
