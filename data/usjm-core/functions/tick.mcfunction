@@ -13,9 +13,8 @@ execute as @a[tag=Usjm.Player] at @s if entity @e[tag=Usjm.IgnoreInteraction,dis
 #> 左右クリック検知
 execute as @a[tag=Usjm.Player] at @s unless entity @s[tag=Usjm.Player.BypassInteraction] anchored eyes positioned ^ ^ ^ unless entity @e[tag=Usjm.Interaction,distance=0,scores={Usjm.InteractionTimer=2..}] run function usjm-core:click_detection/summon_interaction
 
-execute at @a as @e[tag=Usjm.Interaction,distance=..64] unless score @s Usjm.InteractionTimer matches -2147483648..2147483647 run scoreboard players set @s Usjm.InteractionTimer 2
-execute at @a as @e[tag=Usjm.Interaction,distance=..64] run scoreboard players remove @s Usjm.InteractionTimer 1 
-execute at @a as @e[tag=Usjm.Interaction,distance=..64] if score @s Usjm.InteractionTimer matches 0 run kill @s
+execute at @a[tag=Usjm.Player] as @e[tag=Usjm.Interaction,distance=..64] if score @s Usjm.Link = @p Usjm.UUID run scoreboard players remove @s Usjm.InteractionTimer 1 
+execute at @a[tag=Usjm.Player] as @e[tag=Usjm.Interaction,distance=..64] if score @s Usjm.Link = @p Usjm.UUID if score @s Usjm.InteractionTimer matches ..0 run kill @s
 
 #> メニュ－
 execute as @a[tag=Usjm.Player.Menu] unless entity @s[tag=Usjm.Player.Menu-Opened] at @s anchored eyes run function usjm-menu:summon

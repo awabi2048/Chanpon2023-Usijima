@@ -20,7 +20,7 @@ data modify storage usjm:index player.magic[-1].Assignment[-1].Id set value 221
 # 3
 data modify storage usjm:index player.magic[-1].Assignment append value {}
 
-data modify storage usjm:index player.magic[-1].Assignment[-1].MagicId set value "0002-tesaa"
+data modify storage usjm:index player.magic[-1].Assignment[-1].MagicId set value "0002-flame"
 data modify storage usjm:index player.magic[-1].Assignment[-1].Id set value 111
 
 

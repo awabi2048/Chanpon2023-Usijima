@@ -16,3 +16,5 @@ execute as @a[tag=Usjm.Player] if score @s Usjm.Combat.Magic.Casting-Timer match
 
 # tick
 execute as @a[tag=Usjm.Player] at @s as @e[tag=Usjm.Combat.Magic-Marker,distance=..64] if score @s Usjm.Link = @p Usjm.UUID at @s run function usjm-combat:magic/assets/generic/tick
+
+execute as @a[tag=Usjm.Player] at @s as @e[tag=Usjm.Combat.Magic-Marker,distance=65..] run kill @s

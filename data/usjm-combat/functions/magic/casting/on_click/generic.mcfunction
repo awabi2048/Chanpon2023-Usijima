@@ -6,3 +6,8 @@ scoreboard players operation @s Usjm.Combat.Magic.Casting-Operation *= #10 Usjm.
 
 # タイマーを設定 → 一定時間次の操作なければキャンセル
 scoreboard players set @s Usjm.Combat.Magic.Casting-Timer 40
+
+# 操作表示
+data modify storage usjm:combat Magic.Title set value []
+scoreboard players operation $Operation Usjm.Temp = @s Usjm.Combat.Magic.Casting-Operation
+function usjm-combat:magic/casting/on_click/operation_title
