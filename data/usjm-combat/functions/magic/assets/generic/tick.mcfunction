@@ -1,5 +1,6 @@
 ## Tick
 #> 移動処理
+execute store result score @s Usjm.Temp run data get entity @s data.Usjm.Magic.Speed 1000
 function usjm-combat:magic/assets/generic/movement
 
 #> 当たり判定
@@ -12,4 +13,4 @@ execute if entity @e[tag=Usjm.Mobs-Hit.Magic] run function usjm-combat:magic/ass
 
 #> 分岐処理
 execute if data entity @s {data:{Usjm:{Magic:{Id:"0000-template"}}}} run function usjm-combat:magic/assets/0000-template/tick
-
+execute if data entity @s {data:{Usjm:{Magic:{Id:"0001-basic"}}}} run function usjm-combat:magic/assets/0001-basic/tick

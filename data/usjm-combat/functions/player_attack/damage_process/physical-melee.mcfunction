@@ -1,4 +1,7 @@
 ## 与ダメージ計算 (物理 近接)
+# 基礎ダメージ値取得
+execute store result score $FinalDamage Usjm.Temp run data get entity @p[tag=Usjm.AttackerPlayer] SelectedItem.tag.Usjm.ItemStats.Damage
+
 # レベル倍率
 execute store result score $DamageMultiple Usjm.Temp run scoreboard players get @a[tag=Usjm.AttackerPlayer,limit=1] Usjm.PlayerStats.PlayerLevel
 scoreboard players operation $DamageMultiple Usjm.Temp *= #2 Usjm.Constant

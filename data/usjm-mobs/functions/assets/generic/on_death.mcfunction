@@ -6,7 +6,6 @@ execute on passengers on passengers run data modify storage usjm:mobs DiedMobDat
 execute on passengers on passengers run kill @s
 execute on passengers run kill @s
 
-tp ~ ~-300 ~
 kill @s
 
 #> 討伐クエストの判定

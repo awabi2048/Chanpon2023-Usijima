@@ -1,11 +1,7 @@
 ## ダメージ処理
-#> ステータスを取得
-execute store result score $FinalDamage Usjm.Temp run data get entity @p[tag=Usjm.AttackerPlayer] SelectedItem.tag.Usjm.ItemStats.Damage
-
 #> ダメージの種類によって処理を分岐, ダメージ計算
 execute if data storage usjm:combat {DamageProcessing:{Type:"Physical-Melee"}} run function usjm-combat:player_attack/damage_process/physical-melee
 execute if data storage usjm:combat {DamageProcessing:{Type:"Physical-Ranged"}} run function usjm-combat:player_attack/damage_process/physical-ranged
-execute if data storage usjm:combat {DamageProcessing:{Type:"Magical"}} run function usjm-combat:player_attack/damage_process/magical
 
 #> モブへダメージ処理
     # モブの防御力
@@ -33,6 +29,9 @@ execute if data storage usjm:combat {DamageProcessing:{Type:"Magical"}} run func
 function usjm-combat:player_attack/damage_process/digit_display/_
 
 #> モブ側のダメージ処理
+# ダメージ受けた表示
+damage @s 0.001 generic
+
 function usjm-mobs:on_damaged
 
 #> 体力バーの再設定

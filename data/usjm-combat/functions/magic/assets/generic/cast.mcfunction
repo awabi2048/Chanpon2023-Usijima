@@ -1,19 +1,38 @@
 ## 左クリック魔法 
 #> ダメージ計算
-# 魔法辞退の基礎ダメージを取得
+# 魔法自体の基礎ダメージを取得
 execute store result score $FinalDamage Usjm.Temp run data get storage usjm:index Search.out.BaseDamage 
 
-# 杖のダメージを取得
+# 杖の武器火力
 execute store result score $WandDamage Usjm.Temp run data get entity @s SelectedItem.tag.Usjm.ItemStats.Damage
 scoreboard players add $WandDamage Usjm.Temp 200
 
-# 最大マナ量で乗算
+scoreboard players operation $FinalDamage Usjm.Temp *= $WandDamage Usjm.Temp
+scoreboard players operation $FinalDamage Usjm.Temp /= #200 Usjm.Constant
+
+# 最大マナ
 scoreboard players operation $FinalDamage Usjm.Temp *= @s Usjm.PlayerStats.ManaPool
 scoreboard players operation $FinalDamage Usjm.Temp /= #100 Usjm.Constant
 
-# 杖ダメージで乗算
-scoreboard players operation $FinalDamage Usjm.Temp *= $WandDamage Usjm.Temp
-scoreboard players operation $FinalDamage Usjm.Temp /= #200 Usjm.Constant
+# レベル倍率 (+2*Level%)
+execute store result score $DamageMultiple Usjm.Temp run scoreboard players get @s Usjm.PlayerStats.PlayerLevel
+scoreboard players operation $DamageMultiple Usjm.Temp *= #2 Usjm.Constant
+
+scoreboard players add $DamageMultiple Usjm.Temp 100
+
+scoreboard players operation $FinalDamage Usjm.Temp *= $DamageMultiple Usjm.Temp
+scoreboard players operation $FinalDamage Usjm.Temp /= #100 Usjm.Constant
+
+# 職業倍率
+scoreboard players set $DamageMultiple Usjm.Temp 100
+
+execute as @p[tag=Usjm.AttackerPlayer] if entity @s[tag=Usjm.Job-Swordsman] run scoreboard players set $DamageMultiple Usjm.Temp 100
+execute as @p[tag=Usjm.AttackerPlayer] if entity @s[tag=Usjm.Job-Wizard] run scoreboard players set $DamageMultiple Usjm.Temp 80
+execute as @p[tag=Usjm.AttackerPlayer] if entity @s[tag=Usjm.Job-Hunter] run scoreboard players set $DamageMultiple Usjm.Temp 110
+execute as @p[tag=Usjm.AttackerPlayer] if entity @s[tag=Usjm.Job-Warrior] run scoreboard players set $DamageMultiple Usjm.Temp 120
+
+scoreboard players operation $FinalDamage Usjm.Temp *= $DamageMultiple Usjm.Temp
+scoreboard players operation $FinalDamage Usjm.Temp /= #100 Usjm.Constant
 
 #> エンティティまわり
 # Marker召喚, 
