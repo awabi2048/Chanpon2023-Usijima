@@ -36,6 +36,7 @@ execute if data storage usjm:mobs {QuestRelated:true} run scoreboard players add
 execute if data storage usjm:quest {Search:{out:{Type:"Main"}}} run data modify storage usjm:quest Type set value '{"text":"メインクエスト","color":"red"}'
 execute if data storage usjm:quest {Search:{out:{Type:"Sub"}}} run data modify storage usjm:quest Type set value '{"text":"サブクエスト","color":"aqua"}'
 
+tellraw @a {"score":{"name": "@p[tag=Usjm.AttackerPlayer]","objective": "Usjm.Questing-Progress"},"color": "yellow"}
 execute if data storage usjm:mobs {QuestRelated:true} if score @p[tag=Usjm.AttackerPlayer] Usjm.Questing-Progress < $QuestSubject Usjm.Temp run tellraw @p[tag=Usjm.AttackerPlayer] [{"text": "［","color": "white"},{"nbt":"Type","storage": "usjm:quest","interpret": true},{"text": "］","color": "white"},"\uF824",{"text": "『","color": "white","bold": true},{"nbt":"Search.out.DisplayName","storage": "usjm:index","bold": true,"interpret": true,"color": "white"},{"text": "』","color": "white","bold": true},{"text": "\uF824\uF822(","color": "white","bold": false},{"score":{"name": "@p[tag=Usjm.AttackerPlayer]","objective": "Usjm.Questing-Progress"},"color": "yellow"},{"text": "/","color": "gray"},{"nbt":"Search.out.Subject.Count","storage": "usjm:index","color": "gray"},{"text": ")","color": "white"}]
 
 # 終了判定

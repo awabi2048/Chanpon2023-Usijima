@@ -9,7 +9,11 @@ execute if data entity @s {data:{Usjm:{Magic:{Id:"0002-flame"}}}} run function u
 execute store result score $FinalDamage Usjm.Temp run data get entity @s data.Usjm.Magic.Damage
 data modify storage usjm:combat DamageProcessing.Type set value "Magical"
 
+execute as @a[tag=Usjm.Player] if score @s Usjm.UUID = @e[tag=Usjm.Combat.Magic-Marker,sort=nearest,limit=1] Usjm.Link run tag @s add Usjm.AttackerPlayer
+execute as @a[tag=Usjm.AttackerPlayer] run say a    
+
 execute as @e[tag=Usjm.Mobs-Hit.Magic] run function usjm-combat:player_attack/damage_process/generic
+
 
 
 #> 後処理

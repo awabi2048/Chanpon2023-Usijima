@@ -48,7 +48,14 @@ execute store result entity @e[tag=Usjm.Temp,limit=1] data.Usjm.Magic.Damage int
 
 scoreboard players operation @e[tag=Usjm.Temp,limit=1] Usjm.Link = @s Usjm.UUID
 
+
+#> 処理分岐
+execute if data entity @e[tag=Usjm.Temp,limit=1] {data:{Usjm:{Magic:{Id:"0000-template"}}}} as @e[tag=Usjm.Temp,limit=1] at @s run function usjm-combat:magic/assets/0000-template/on_cast
+execute if data entity @e[tag=Usjm.Temp,limit=1] {data:{Usjm:{Magic:{Id:"0001-basic"}}}} as @e[tag=Usjm.Temp,limit=1] at @s run function usjm-combat:magic/assets/0001-basic/on_cast
+execute if data entity @e[tag=Usjm.Temp,limit=1] {data:{Usjm:{Magic:{Id:"0002-flame"}}}} as @e[tag=Usjm.Temp,limit=1] at @s run function usjm-combat:magic/assets/0002-flame/on_cast
+
+
+
 # tag
 tag @e[tag=Usjm.Temp,limit=1] remove Usjm.Temp
-
 

@@ -105,6 +105,13 @@ execute if data storage usjm:player_stats PlayerItem.Mainhand.ItemType unless da
 execute unless data storage usjm:player_stats PlayerItem.Mainhand.ItemType run attribute @s generic.attack_speed base set 4.0
 execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:Armor}}} run attribute @s generic.attack_speed base set 4.0
 
+data modify storage usjm:player_stats PlayerItem.hasAttackSpeed set value true
+
+execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:"Armor"}}} run data modify storage usjm:player_stats PlayerItem.hasAttackSpeed set value false
+execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:"Crossbow"}}} run data modify storage usjm:player_stats PlayerItem.hasAttackSpeed set value false
+
+execute if data storage usjm:player_stats {Give:{hasUUID:false}} run data modify storage usjm:player_stats PlayerItem.hasAttackSpeed set value false
+
 execute if data storage usjm:player_stats PlayerItem.Mainhand.ItemType unless data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:Armor}}} run item modify entity @s weapon.mainhand usjm-items:remove_attribute
 execute if data storage usjm:player_stats PlayerItem.Mainhand.ItemType unless data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:Armor}}} run item modify entity @s weapon.mainhand usjm-items:set_atk_speed
 
@@ -142,7 +149,7 @@ scoreboard players add $Crossbow.ChargeTimeModifier Usjm.Temp 1000
 scoreboard players operation $Crossbow.ChargeTime Usjm.Temp *= $Crossbow.ChargeTimeModifier Usjm.Temp
 scoreboard players operation $Crossbow.ChargeTime Usjm.Temp /= #1000 Usjm.Constant
 
-execute store result storage usjm:items ChargeTime int 0.001 run scoreboard players get $Crossbow.ChargeTime Usjm.Temp
+execute store result storage usjm:player_stats ChargeTime int 0.001 run scoreboard players get $Crossbow.ChargeTime Usjm.Temp
 execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:"Crossbow"}}} run item modify entity @s weapon.mainhand usjm-items:crossbow/set_charge_time
 
 #> HPバーセット

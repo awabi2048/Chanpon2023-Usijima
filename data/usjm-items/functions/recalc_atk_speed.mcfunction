@@ -32,3 +32,4 @@ scoreboard players operation $AtkSpeed Usjm.Temp *= $AtkSpeedMultiple Usjm.Temp
 scoreboard players operation $AtkSpeed Usjm.Temp /= #100 Usjm.Constant
 
 #Memo:(結果は1000倍値)
+

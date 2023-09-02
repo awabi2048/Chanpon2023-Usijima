@@ -11,7 +11,7 @@
             "italic": false
           },
           {
-            "text": "タイプ\uF829\uF822",
+            "text": "希少度\uF829\uF822",
             "color": "gray",
             "bold": false,
             "italic": false
@@ -22,10 +22,11 @@
             "bold": false
           },
           {
-            "nbt": "PlaceItem.Lore.ItemType",
+            "nbt": "PlaceItem.Lore.Rarity",
             "storage": "usjm:items",
-            "color": "white",
-            "bold": true
+            "color": "yellow",
+            "bold": false,
+            "interpret": true
           }
         ]
       ],
