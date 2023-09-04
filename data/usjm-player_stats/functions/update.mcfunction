@@ -5,6 +5,7 @@ scoreboard players operation @s Usjm.PlayerStats.MaxHealth = @s Usjm.PlayerStats
 scoreboard players operation @s Usjm.PlayerStats.Defence = @s Usjm.PlayerStats.Defence-Base
 scoreboard players operation @s Usjm.PlayerStats.ManaPool = @s Usjm.PlayerStats.ManaPool-Base
 scoreboard players operation @s Usjm.PlayerStats.Luck = @s Usjm.PlayerStats.Luck-Base
+scoreboard players operation @s Usjm.PlayerStats.Speed = @s Usjm.PlayerStats.Speed-Base
 
 data modify storage usjm:player_stats PlayerItem set value {Mainhand:{},Armor:[{},{},{},{}]}
 
@@ -13,6 +14,9 @@ data modify storage usjm:player_stats _ set from entity @s
 
 data modify storage usjm:player_stats PlayerItem.Mainhand set from storage usjm:player_stats _.SelectedItem.tag.Usjm.ItemStats
 data modify storage usjm:player_stats PlayerItem.Mainhand.ItemType set from storage usjm:player_stats _.SelectedItem.tag.Usjm.ItemType
+
+data modify storage usjm:player_stats PlayerItem.Mainhand.hasUUID set value false
+execute store success storage usjm:player_stats PlayerItem.Mainhand.hasUUID byte 1 run data get storage usjm:player_stats _.SelectedItem.tag.Usjm.UUID
 
 data modify storage usjm:player_stats PlayerItem.Armor[0] set from storage usjm:player_stats _.Inventory[{Slot:100b}].tag.Usjm.ItemStats
 data modify storage usjm:player_stats PlayerItem.Armor[1] set from storage usjm:player_stats _.Inventory[{Slot:101b}].tag.Usjm.ItemStats
@@ -93,6 +97,24 @@ execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:Armor}
 
 scoreboard players operation @s Usjm.PlayerStats.Luck += $LuckBonus Usjm.Temp
 
+#> Speed
+execute store result score $SpeedBonus Usjm.Temp run data get storage usjm:player_stats PlayerItem.Armor[0].Speed
+scoreboard players operation @s Usjm.PlayerStats.Speed += $SpeedBonus Usjm.Temp
+
+execute store result score $SpeedBonus Usjm.Temp run data get storage usjm:player_stats PlayerItem.Armor[1].Speed
+scoreboard players operation @s Usjm.PlayerStats.Speed += $SpeedBonus Usjm.Temp
+
+execute store result score $SpeedBonus Usjm.Temp run data get storage usjm:player_stats PlayerItem.Armor[2].Speed
+scoreboard players operation @s Usjm.PlayerStats.Speed += $SpeedBonus Usjm.Temp
+
+execute store result score $SpeedBonus Usjm.Temp run data get storage usjm:player_stats PlayerItem.Armor[3].Speed
+scoreboard players operation @s Usjm.PlayerStats.Speed += $SpeedBonus Usjm.Temp
+
+execute store result score $SpeedBonus Usjm.Temp run data get storage usjm:player_stats PlayerItem.Mainhand.Speed
+execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:Armor}}} run scoreboard players set $SpeedBonus Usjm.Temp 0
+
+scoreboard players operation @s Usjm.PlayerStats.Speed += $SpeedBonus Usjm.Temp
+
 #> 攻撃速度
 scoreboard players set $SubstantiveAtkSpeed Usjm.Temp 2000000
 execute store result score $PlayerAtkSpeed Usjm.Temp run data get storage usjm:player_stats PlayerItem.Mainhand.AtkSpeed 1000
@@ -100,20 +122,22 @@ execute store result score $PlayerAtkSpeed Usjm.Temp run data get storage usjm:p
 scoreboard players operation $SubstantiveAtkSpeed Usjm.Temp /= $PlayerAtkSpeed Usjm.Temp
 scoreboard players remove $SubstantiveAtkSpeed Usjm.Temp 90
 
-execute if data storage usjm:player_stats PlayerItem.Mainhand.ItemType unless data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:Armor}}} run attribute @s generic.attack_speed base set 0
-
-execute unless data storage usjm:player_stats PlayerItem.Mainhand.ItemType run attribute @s generic.attack_speed base set 4.0
-execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:Armor}}} run attribute @s generic.attack_speed base set 4.0
-
+# 攻撃速度の設定が必要か判定
 data modify storage usjm:player_stats PlayerItem.hasAttackSpeed set value true
 
-execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:"Armor"}}} run data modify storage usjm:player_stats PlayerItem.hasAttackSpeed set value false
-execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:"Crossbow"}}} run data modify storage usjm:player_stats PlayerItem.hasAttackSpeed set value false
+execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:"Armor"}}} run data modify storage usjm:player_stats PlayerItem.Mainhand.hasAttackSpeed set value false
+execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:"Crossbow"}}} run data modify storage usjm:player_stats PlayerItem.Mainhand.hasAttackSpeed set value false
 
-execute if data storage usjm:player_stats {Give:{hasUUID:false}} run data modify storage usjm:player_stats PlayerItem.hasAttackSpeed set value false
+execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{hasUUID:false}}} run data modify storage usjm:player_stats PlayerItem.Mainhand.hasAttackSpeed set value false
 
-execute if data storage usjm:player_stats PlayerItem.Mainhand.ItemType unless data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:Armor}}} run item modify entity @s weapon.mainhand usjm-items:remove_attribute
-execute if data storage usjm:player_stats PlayerItem.Mainhand.ItemType unless data storage usjm:player_stats {PlayerItem:{Mainhand:{ItemType:Armor}}} run item modify entity @s weapon.mainhand usjm-items:set_atk_speed
+# 必要なら → アイテムのAttributesModifierを操作して適応
+execute if data storage usjm:player_stats PlayerItem.Mainhand.ItemType unless data storage usjm:player_stats {PlayerItem:{Mainhand:{hasAttackSpeed:false}}} run attribute @s generic.attack_speed base set 0
+
+execute unless data storage usjm:player_stats PlayerItem.Mainhand.ItemType run attribute @s generic.attack_speed base set 4.0
+execute if data storage usjm:player_stats {PlayerItem:{Mainhand:{hasAttackSpeed:false}}} run attribute @s generic.attack_speed base set 4.0
+
+execute if data storage usjm:player_stats PlayerItem.Mainhand.ItemType unless data storage usjm:player_stats {PlayerItem:{Mainhand:{hasAttackSpeed:false}}} run item modify entity @s weapon.mainhand usjm-items:remove_attribute
+execute if data storage usjm:player_stats PlayerItem.Mainhand.ItemType unless data storage usjm:player_stats {PlayerItem:{Mainhand:{hasAttackSpeed:false}}} run item modify entity @s weapon.mainhand usjm-items:set_atk_speed
 
 execute store result score @s Usjm.Combat.PlayerAttackCooldown run data get entity @s SelectedItem.tag.Usjm.ItemStats.AtkSpeed
 

@@ -9,6 +9,7 @@ scoreboard objectives add Usjm.PlayerStats.MaxHealth dummy
 scoreboard objectives add Usjm.PlayerStats.Health dummy
 scoreboard objectives add Usjm.PlayerStats.HealthDisplaying dummy
 scoreboard objectives add Usjm.PlayerStats.Defence dummy
+scoreboard objectives add Usjm.PlayerStats.Speed dummy
 
 scoreboard objectives add Usjm.PlayerStats.ManaPool dummy
 scoreboard objectives add Usjm.PlayerStats.Mana dummy
@@ -29,4 +30,4 @@ scoreboard objectives add Usjm.PlayerStats.MaxHealth-Base dummy
 scoreboard objectives add Usjm.PlayerStats.Luck-Base dummy
 scoreboard objectives add Usjm.PlayerStats.Defence-Base dummy
 scoreboard objectives add Usjm.PlayerStats.ManaPool-Base dummy
-
+scoreboard objectives add Usjm.PlayerStats.Speed-Base dummy

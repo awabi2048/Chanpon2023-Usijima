@@ -48,13 +48,16 @@ kill @e[tag=Usjm.Item.Temp]
 # アイテムを配置, 作成したデータをコピー
 item replace block 0 -64 0 container.0 with stone
 
-# data modify block 0 -64 0 Items[{Slot:0b}] set from storage usjm:items PlaceItem
+data modify block 0 -64 0 Items[{Slot:0b}] set from storage usjm:items PlaceItem
 
-data modify storage usjm:items PlaceItem set value {}
+# data modify storage usjm:items PlaceItem set value {}
 
 #> Lore設定
 # StatsのLore設定
-execute if data storage usjm:items {PlaceItem:{hasLore:true}} run function usjm-items:assets/generic/stats_lore
+data modify storage usjm:items PlaceItem.hasStats set value true
+execute if data storage usjm:items {Give:{hasUUID:false}} run data modify storage usjm:items PlaceItem.hasStats set value false
+
+execute if data storage usjm:items {PlaceItem:{hasStats:true}} run function usjm-items:assets/generic/stats_lore
 
 # アイテムの種類
 execute if data storage usjm:index {Search:{out:{ItemType:"Sword"}}} run data modify storage usjm:items PlaceItem.Lore.ItemType set value "剣"

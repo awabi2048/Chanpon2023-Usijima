@@ -14,6 +14,22 @@ execute if data storage usjm:npc {NPCData:{isTalking:true}} run playsound ui.but
 
 execute if data storage usjm:npc {NPCData:{isTalking:true}} run return -1
 
+#> 納品クエスト用の処理
+# 納品クエストを受注しているか判定
+execute store result storage usjm:index Search.in int 1 run scoreboard players get @s Usjm.Questing-Id
+data modify storage usjm:index Search.Index set from storage usjm:index quest
+
+function usjm-core:index_search
+
+data modify storage usjm:npc QuestFetching. set value false
+
+
+execute if data storage usjm:index {Search:{out:{Format:"Fetch"}}} run data modify storage usjm:npc QuestFetching set value true
+
+execute if data storage usjm:npc {QuestFetching:true} run function usjm-quest:assets/generic/on_fetch
+execute if data storage usjm:npc {QuestFetching:true} run return -1
+
+#> 割り込み防止処理
 # 会話が新しく始まったならタグを付与
 execute if data storage usjm:npc {NPCData:{Dialogue:{Current:[]}}} run tag @e[tag=Usjm.NPC-Interacted,limit=1] add Usjm.NPC-Talking
 

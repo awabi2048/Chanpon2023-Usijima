@@ -1,4 +1,4 @@
-## UUID 付きアイテム 定義: 0000-template
+## UUID 付きアイテム 定義: 0001-rotten_flesh
 #> データ作成
 # 空データ
 data modify storage usjm:index item.no_uuid append value {}
@@ -17,7 +17,7 @@ data modify storage usjm:index item.no_uuid[-1].StackSize set value 64b
 data modify storage usjm:index item.no_uuid[-1].tag.display.Name set value '{"text":"腐った肉","color":"white","italic":false}'
 
 data modify storage usjm:index item.no_uuid[-1].tag.display.Lore set value []
-data modify storage usjm:index item.no_uuid[-1].tag.display.Lore append value '{"text":"ひどい臭いだ。","italic":false}'
+data modify storage usjm:index item.no_uuid[-1].tag.display.Lore append value '{"text":"酷いにおいだ。","italic":false}'
 
 # CustomModelData
 data modify storage usjm:index item.no_uuid[-1].tag.CustomModelData set value 3010001

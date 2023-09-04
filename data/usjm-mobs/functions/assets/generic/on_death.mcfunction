@@ -43,31 +43,45 @@ execute if data storage usjm:mobs {QuestRelated:true} if score @p[tag=Usjm.Attac
 execute store result score $QuestSubject Usjm.Temp run data get storage usjm:index Search.out.Subject.Count
 execute if data storage usjm:mobs {QuestRelated:true} if score @p[tag=Usjm.AttackerPlayer] Usjm.Questing-Progress >= $QuestSubject Usjm.Temp as @p[tag=Usjm.AttackerPlayer] run function usjm-quest:assets/generic/on_finish
 
-#> ルート
+#> Loot
 # Luckの値を+100
 scoreboard players add @p[tag=Usjm.AttackerPlayer] Usjm.PlayerStats.Luck 100
 
+#> スコアルート
 # 経験値 Exp
-execute store result score $ExpAmount Usjm.Temp run data get storage usjm:mobs DiedMobData.ExpAmount
+execute store result score $LootExp Usjm.Temp run data get storage usjm:mobs DiedMobData.Loot.Exp
+execute store result score $LootGold Usjm.Temp run data get storage usjm:mobs DiedMobData.Loot.Gold
 
-scoreboard players operation $ExpAmount Usjm.Temp *= @p[tag=Usjm.AttackerPlayer] Usjm.PlayerStats.Luck
-scoreboard players operation $ExpAmount Usjm.Temp /= #100 Usjm.Constant
+scoreboard players operation $LootExp Usjm.Temp *= @p[tag=Usjm.AttackerPlayer] Usjm.PlayerStats.Luck
+scoreboard players operation $LootExp Usjm.Temp /= #100 Usjm.Constant
 
-scoreboard players operation @p[tag=Usjm.AttackerPlayer] Usjm.PlayerStats.CurrentExp += $ExpAmount Usjm.Temp
+scoreboard players operation @p[tag=Usjm.AttackerPlayer] Usjm.PlayerStats.CurrentExp += $LootExp Usjm.Temp
 
 # お金 Gold
-execute store result score $GoldAmount Usjm.Temp run data get storage usjm:mobs DiedMobData.GoldAmount
+scoreboard players operation $LootGold Usjm.Temp *= @p[tag=Usjm.AttackerPlayer] Usjm.PlayerStats.Luck
+scoreboard players operation $LootGold Usjm.Temp /= #100 Usjm.Constant
 
-scoreboard players operation $GoldAmount Usjm.Temp *= @p[tag=Usjm.AttackerPlayer] Usjm.PlayerStats.Luck
-scoreboard players operation $GoldAmount Usjm.Temp /= #100 Usjm.Constant
-
-scoreboard players operation @p[tag=Usjm.AttackerPlayer] Usjm.PlayerStats.Gold += $GoldAmount Usjm.Temp
+scoreboard players operation @p[tag=Usjm.AttackerPlayer] Usjm.PlayerStats.Gold += $LootGold Usjm.Temp
 
 # もとに戻す
 scoreboard players remove @p[tag=Usjm.AttackerPlayer] Usjm.PlayerStats.Luck 100
 
 # 獲得した経験値からバーを再設定
 execute as @p[tag=Usjm.AttackerPlayer] run function usjm-player_stats:exp_bar/reflesh
+
+#> アイテムルート
+# モブのルートアイテムを取得
+data modify storage usjm:index Search.Index set from storage usjm:index mobs
+data modify storage usjm:index Search.in set from storage usjm:mobs DiedMobData.Id
+function usjm-core:index_search
+
+# アイテムの召喚
+data modify storage usjm:mobs Looting.in set from storage usjm:index Search.out.Loot.Item
+
+setblock 0 -64 0 shulker_box replace
+function usjm-mobs:looting/_
+
+# setblock 0 -64 0 bedrock
 
 #> 効果音
 playsound entity.experience_orb.pickup master @a[tag=Usjm.AttackerPlayer] ~ ~ ~ 2 1
@@ -80,4 +94,4 @@ title @a[tag=Usjm.AttackerPlayer] times 5t 30t 5t
 title @a[tag=Usjm.AttackerPlayer] title ""
 
 # subtitle
-title @a[tag=Usjm.AttackerPlayer] subtitle [{"text": "\uE0F4\uF821"},{"text": ":\uF822","color": "gray"},{"text": "+","color": "gray"},{"score":{"name": "$GoldAmount","objective": "Usjm.Temp"},"color": "#ffffaa"},{"text": "\uF821G","color": "#ffffaa"},{"text": "\uF825"},{"text": "\uE0F7\uF821"},{"text": ":\uF822","color": "gray"},{"text": "+","color": "gray"},{"score":{"name": "$ExpAmount","objective": "Usjm.Temp"},"color": "#aaffaa"},{"text": "\uF821Exp","color": "#aaffaa"}]
+title @a[tag=Usjm.AttackerPlayer] subtitle [{"text": "\uE0F4\uF821"},{"text": ":\uF822","color": "gray"},{"text": "+","color": "gray"},{"score":{"name": "$LootGold","objective": "Usjm.Temp"},"color": "#ffffaa"},{"text": "\uF821G","color": "#ffffaa"},{"text": "\uF825"},{"text": "\uE0F7\uF821"},{"text": ":\uF822","color": "gray"},{"text": "+","color": "gray"},{"score":{"name": "$LootExp","objective": "Usjm.Temp"},"color": "#aaffaa"},{"text": "\uF821Exp","color": "#aaffaa"}]

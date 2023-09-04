@@ -17,8 +17,12 @@ data modify storage usjm:index mobs[-1].Defence set value 25
 data modify storage usjm:index mobs[-1].Speed set value 100
 
 # ルート
-data modify storage usjm:index mobs[-1].ExpAmount set value 5
-data modify storage usjm:index mobs[-1].GoldAmount set value 5
+data modify storage usjm:index mobs[-1].Loot.Exp set value 5
+data modify storage usjm:index mobs[-1].Loot.Gold set value 5
+
+data modify storage usjm:index mobs[-1].Loot.Item set value []
+data modify storage usjm:index mobs[-1].Loot.Item append value {Id:"0001-rotten_flesh",Base:6}
+data modify storage usjm:index mobs[-1].Loot.Item append value {Id:"0002-zombie_liver",Base:1}
 
 # 属性
 data modify storage usjm:index mobs[-1].Attribute set value "None"

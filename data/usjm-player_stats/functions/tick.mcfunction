@@ -23,3 +23,6 @@ execute as @a[tag=Usjm.Player] if score @s Usjm.PlayerStats.CurrentExp >= @s Usj
 
 effect give @a[tag=Usjm.Player] saturation infinite 200 true
 effect give @a[tag=Usjm.Player] resistance infinite 200 true
+
+# 速度
+function usjm-player_stats:speed/binary/branch/p

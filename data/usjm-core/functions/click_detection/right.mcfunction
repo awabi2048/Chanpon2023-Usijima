@@ -6,6 +6,7 @@ advancement revoke @s only usjm-core:click_detection/right
 scoreboard players set $RaycastReturn Usjm.Temp -1
 execute store result score $RaycastReturn Usjm.Temp anchored eyes run function usjm-core:raycast
 execute if score $RaycastReturn Usjm.Temp matches 1.. run function usjm-npc:dialogue
+execute if score $RaycastReturn Usjm.Temp matches 1.. run return -1
 
 # 杖
 execute if predicate usjm-combat:holding_item/wand run function usjm-combat:magic/casting/on_click/right

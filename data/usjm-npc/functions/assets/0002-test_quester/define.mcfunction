@@ -17,7 +17,7 @@ data modify storage usjm:index npc[-1].QuestStatus set value "Idle"
     # .Main
     data modify storage usjm:index npc[-1].Dialogue.Content.Main append value {"text":'{"text":"こんにちは"}'}
     data modify storage usjm:index npc[-1].Dialogue.Content.Main append value {"text":'{"text":"これが会話です"}'}
-    data modify storage usjm:index npc[-1].Dialogue.Content.Main append value {"Quest":{Id:1,Name:"0001-zombie_slayer"}}
+    data modify storage usjm:index npc[-1].Dialogue.Content.Main append value {"Quest":{Id:2,Name:"0002-fetch_test"}}
     data modify storage usjm:index npc[-1].Dialogue.Content.Main append value {"text":'{"text":"さようなら(3) 分からなくなったらまた"}'}
     
     # .DuringQuest

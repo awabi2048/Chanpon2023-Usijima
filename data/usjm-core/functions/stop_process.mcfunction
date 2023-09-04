@@ -1,1 +1,0 @@
-function usjm-core:stop_process

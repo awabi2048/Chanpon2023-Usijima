@@ -1,0 +1,32 @@
+{
+    "pools": [
+      {
+        "rolls": 1,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "minecraft:stone",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": {
+                  "type": "minecraft:binomial",
+                  "n": {
+                    "type": "minecraft:score",
+                    "target": {
+                      "type": "minecraft:fixed",
+                      "name": "$TrialNumber"
+                    },
+                    "score": "Usjm.Temp",
+                    "scale": 1
+                  },
+                  "p": 0.25
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  

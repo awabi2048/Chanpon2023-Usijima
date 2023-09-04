@@ -9,4 +9,5 @@ function usjm-items:assets/has_uuid/0002-wooden_wand/define
 
 # UUIDなし
 function usjm-items:assets/no_uuid/0000-template/define
-
+function usjm-items:assets/no_uuid/0001-rotten_flesh/define
+function usjm-items:assets/no_uuid/0002-zombie_liver/define
