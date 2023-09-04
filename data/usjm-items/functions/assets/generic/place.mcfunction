@@ -31,6 +31,8 @@ data modify storage usjm:items PlaceItem.tag.Usjm.ItemStats set from storage usj
 data modify storage usjm:items PlaceItem.tag.Usjm.Rarity set from storage usjm:index Search.out.Rarity
 data modify storage usjm:items PlaceItem.tag.Usjm.ItemType set from storage usjm:index Search.out.ItemType
 
+data modify storage usjm:items PlaceItem.tag.Usjm.Id set from storage usjm:index Search.out.Id
+
 data modify storage usjm:items PlaceItem.hasLore set value false
 execute unless data storage usjm:items {PlaceItem:{tag:{display:{Lore:[]}}}} run data modify storage usjm:items PlaceItem.hasLore set value true
 

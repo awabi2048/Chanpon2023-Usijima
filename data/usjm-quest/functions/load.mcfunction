@@ -1,5 +1,5 @@
 ## Load
-# データをロード
+# Assetsのロード
 function usjm-quest:assets/load
 
 # スコアボードを定義

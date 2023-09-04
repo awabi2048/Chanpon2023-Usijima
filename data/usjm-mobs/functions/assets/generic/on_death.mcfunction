@@ -18,10 +18,7 @@ data modify storage usjm:index Search.Index set from storage usjm:index quest
 data modify storage usjm:index Search.out set value {}
 function usjm-core:index_search
 
-# クエストの目標値を取得
-execute store result score $QuestTarget Usjm.Temp run data get storage usjm:index Search.out.Subject.Count
-
-# MobのIdが一致すれば討伐数に加算
+# MobのIdが一致すれば進捗処理を実行
 data remove storage usjm:mobs CompareSucceeded
 execute store success storage usjm:mobs CompareSucceeded byte 1 run data modify storage usjm:index Search.out.Subject.Target set from storage usjm:mobs DiedMobData.Id
 
@@ -30,18 +27,7 @@ execute if data storage usjm:mobs {CompareSucceeded:1b} run data modify storage 
 
 execute unless score @p[tag=Usjm.AttackerPlayer] Usjm.Questing-Id matches 1.. run data modify storage usjm:mobs QuestRelated set value false
 
-execute if data storage usjm:mobs {QuestRelated:true} run scoreboard players add @p[tag=Usjm.AttackerPlayer] Usjm.Questing-Progress 1
-
-# 進捗度合いを通知 (完了済み扱いでなければ)
-execute if data storage usjm:quest {Search:{out:{Type:"Main"}}} run data modify storage usjm:quest Type set value '{"text":"メインクエスト","color":"red"}'
-execute if data storage usjm:quest {Search:{out:{Type:"Sub"}}} run data modify storage usjm:quest Type set value '{"text":"サブクエスト","color":"aqua"}'
-
-tellraw @a {"score":{"name": "@p[tag=Usjm.AttackerPlayer]","objective": "Usjm.Questing-Progress"},"color": "yellow"}
-execute if data storage usjm:mobs {QuestRelated:true} if score @p[tag=Usjm.AttackerPlayer] Usjm.Questing-Progress < $QuestSubject Usjm.Temp run tellraw @p[tag=Usjm.AttackerPlayer] [{"text": "［","color": "white"},{"nbt":"Type","storage": "usjm:quest","interpret": true},{"text": "］","color": "white"},"\uF824",{"text": "『","color": "white","bold": true},{"nbt":"Search.out.DisplayName","storage": "usjm:index","bold": true,"interpret": true,"color": "white"},{"text": "』","color": "white","bold": true},{"text": "\uF824\uF822(","color": "white","bold": false},{"score":{"name": "@p[tag=Usjm.AttackerPlayer]","objective": "Usjm.Questing-Progress"},"color": "yellow"},{"text": "/","color": "gray"},{"nbt":"Search.out.Subject.Count","storage": "usjm:index","color": "gray"},{"text": ")","color": "white"}]
-
-# 終了判定
-execute store result score $QuestSubject Usjm.Temp run data get storage usjm:index Search.out.Subject.Count
-execute if data storage usjm:mobs {QuestRelated:true} if score @p[tag=Usjm.AttackerPlayer] Usjm.Questing-Progress >= $QuestSubject Usjm.Temp as @p[tag=Usjm.AttackerPlayer] run function usjm-quest:assets/generic/on_finish
+execute if data storage usjm:mobs {QuestRelated:true} as @p[tag=Usjm.AttackerPlayer] run function usjm-quest:assets/generic/on_progress/slayer
 
 #> Loot
 # Luckの値を+100

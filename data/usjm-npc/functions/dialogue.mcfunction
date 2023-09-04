@@ -4,6 +4,9 @@
 execute as @e[tag=Usjm.NPC-Interacted,limit=1] on passengers on passengers run data modify storage usjm:npc NPCData set from entity @s data.Usjm.NPC
 scoreboard players operation @e[tag=Usjm.NPC-Interacted,limit=1] Usjm.Link = @s Usjm.UUID
 
+#> NPC別の処理
+execute if data storage usjm:npc {NPCData:{Id:"0002-test_quester"}} run function usjm-npc:assets/0002-test_quester/on_talked
+
 #> 会話に割り込まれないよう
 # 話しかけている相手が会話中なら処理を中断, 通知
 scoreboard players operation $PlayerUUID Usjm.Temp = @s Usjm.UUID
@@ -15,19 +18,23 @@ execute if data storage usjm:npc {NPCData:{isTalking:true}} run playsound ui.but
 execute if data storage usjm:npc {NPCData:{isTalking:true}} run return -1
 
 #> 納品クエスト用の処理
-# 納品クエストを受注しているか判定
+# 該当クエストを受注中か判定
 execute store result storage usjm:index Search.in int 1 run scoreboard players get @s Usjm.Questing-Id
 data modify storage usjm:index Search.Index set from storage usjm:index quest
 
 function usjm-core:index_search
 
-data modify storage usjm:npc QuestFetching. set value false
+# 受注中かつ、プレイヤーが目標アイテムを手に持っていれば処理
+data modify storage usjm:npc QuestFetching.TargetItem set from storage usjm:index Search.out.Subject.Target
+data modify storage usjm:npc QuestFetching.PlayerItem set from entity @s SelectedItem.tag.Usjm.Id
+data modify storage usjm:npc QuestFetching.Unavailable set value false
+ 
+execute store success storage usjm:npc QuestFetching.Unavailable byte 1 run data modify storage usjm:npc QuestFetching.TargetItem set from storage usjm:npc QuestFetching.PlayerItem
 
+execute unless data storage usjm:index {Search:{out:{Format:"Fetch"}}} run data modify storage usjm:npc QuestFetching.Unavailable set value false
 
-execute if data storage usjm:index {Search:{out:{Format:"Fetch"}}} run data modify storage usjm:npc QuestFetching set value true
-
-execute if data storage usjm:npc {QuestFetching:true} run function usjm-quest:assets/generic/on_fetch
-execute if data storage usjm:npc {QuestFetching:true} run return -1
+execute if data storage usjm:npc {QuestFetching:{Unavailable:false}} run function usjm-quest:assets/generic/on_progress/fetch
+execute if data storage usjm:npc {QuestFetching:{Unavailable:false}} run return -1
 
 #> 割り込み防止処理
 # 会話が新しく始まったならタグを付与
@@ -61,8 +68,6 @@ execute if data storage usjm:npc NPCData.Dialogue.Current[0] unless data storage
 # Markerにデータを戻す
 execute as @e[tag=Usjm.NPC-Interacted,limit=1] on passengers on passengers run data modify entity @s data.Usjm.NPC set from storage usjm:npc NPCData
 
-#> NPC別の処理
-execute if data storage usjm:npc {NPCData:{Id:"0002-test_quester"}} run function usjm-npc:assets/0002-test_quester/on_talked
 
 # タグ除去
 tag @e[tag=Usjm.NPC-Interacted] remove Usjm.NPC-Interacted
