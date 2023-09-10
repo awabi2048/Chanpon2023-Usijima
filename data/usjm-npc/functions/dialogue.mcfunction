@@ -31,10 +31,10 @@ data modify storage usjm:npc QuestFetching.Unavailable set value false
  
 execute store success storage usjm:npc QuestFetching.Unavailable byte 1 run data modify storage usjm:npc QuestFetching.TargetItem set from storage usjm:npc QuestFetching.PlayerItem
 
-execute unless data storage usjm:index {Search:{out:{Format:"Fetch"}}} run data modify storage usjm:npc QuestFetching.Unavailable set value false
+execute unless data storage usjm:index {Search:{out:{Format:"Fetch"}}} run data modify storage usjm:npc QuestFetching.Unavailable set value true
 
-execute if data storage usjm:npc {QuestFetching:{Unavailable:false}} run function usjm-quest:assets/generic/on_progress/fetch
-execute if data storage usjm:npc {QuestFetching:{Unavailable:false}} run return -1
+execute if data storage usjm:npc {QuestFetching:{Unavailable:false}} if predicate usjm:flags/is_sneaking run function usjm-quest:assets/generic/on_progress/fetch
+execute if data storage usjm:npc {QuestFetching:{Unavailable:false}} if predicate usjm:flags/is_sneaking run return -1
 
 #> 割り込み防止処理
 # 会話が新しく始まったならタグを付与

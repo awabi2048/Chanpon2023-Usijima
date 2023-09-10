@@ -9,8 +9,9 @@ data modify storage usjm:quest InventoryFetching.memory set value {}
 # Inventory[]をコピー
 data modify storage usjm:quest InventoryFetching.memory.Inventory set from entity @s Inventory
 
-# スコアリセット
-execute store result score $InventoryFetching-Remaining Usjm.Temp run data get storage usjm:index Search.out.Subject.Count
+# 目標値を設定
+execute if score @s Usjm.Questing-Progress matches 1.. run scoreboard players operation $InventoryFetching-Remaining Usjm.Temp = @s Usjm.Questing-Progress
+execute if score @s Usjm.Questing-Progress matches 0 store result score $InventoryFetching-Remaining Usjm.Temp run data get storage usjm:index Search.out.Subject.Count
 
 # 再帰処理
 function usjm-quest:misc/inventory_fetching/loop

@@ -18,7 +18,6 @@ data modify storage usjm:index npc[-1].QuestStatus set value "Idle"
     data modify storage usjm:index npc[-1].Dialogue.Content.Main append value {"text":'{"text":"こんにちは"}'}
     data modify storage usjm:index npc[-1].Dialogue.Content.Main append value {"text":'{"text":"これが会話です"}'}
     data modify storage usjm:index npc[-1].Dialogue.Content.Main append value {"Quest":{Id:2,Name:"0002-fetch_test"}}
-    data modify storage usjm:index npc[-1].Dialogue.Content.Main append value {"text":'{"text":"さようなら(3) 分からなくなったらまた"}'}
     
     # .DuringQuest
     data modify storage usjm:index npc[-1].Dialogue.Content.DuringQuest append value {"text":'{"text":"クエスト進行中1"}'}

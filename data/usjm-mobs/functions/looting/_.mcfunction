@@ -29,6 +29,5 @@ loot spawn ~ ~ ~ mine 0 -64 0 debug_stick
 # 処理済みのデータを削除
 data remove storage usjm:mobs Looting.in[0]
 
-
 # 未処理のデータが残っていれば再帰
 execute if data storage usjm:mobs Looting.in[0] run function usjm-mobs:looting/_

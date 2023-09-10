@@ -16,6 +16,9 @@ execute as @a[tag=Usjm.Player] at @s unless entity @s[tag=Usjm.Player.BypassInte
 execute at @a[tag=Usjm.Player] as @e[tag=Usjm.Interaction,distance=..64] if score @s Usjm.Link = @p Usjm.UUID run scoreboard players remove @s Usjm.InteractionTimer 1 
 execute at @a[tag=Usjm.Player] as @e[tag=Usjm.Interaction,distance=..64] if score @s Usjm.Link = @p Usjm.UUID if score @s Usjm.InteractionTimer matches ..0 run kill @s
 
+# Qキー押下検知
+execute as @a[tag=Usjm.Player] at @s 
+
 #> メニュ－
 execute as @a[tag=Usjm.Player.Menu] unless entity @s[tag=Usjm.Player.Menu-Opened] at @s anchored eyes run function usjm-menu:summon
 

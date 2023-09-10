@@ -1,8 +1,5 @@
 {
     "values": [
-        "minecraft:air",
-        "#minecraft:buttons",
-        "#minecraft:pressure_plates",
-        "minecraft:water"
+        "minecraft:air"
     ]
 }

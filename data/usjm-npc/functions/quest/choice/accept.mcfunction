@@ -1,9 +1,11 @@
 ## クエスト受注 - 受諾
 #> 前処理
+
+
 # 紐付けから会話中のNPCを特定
 execute as @e[tag=Usjm.NPC-Talking] if score @s Usjm.Link = @p[tag=Usjm.Player] Usjm.UUID run tag @s add Usjm.NPC-Interacted
 
-tellraw @a {"nbt":"NPCData.Dialogue.Current[0].Quest.Id","storage": "usjm:npc"}
+# tellraw @a {"nbt":"NPCData.Dialogue.Current[0].Quest.Id","storage": "usjm:npc"}
 data modify storage usjm:index Search.in set from storage usjm:npc NPCData.Dialogue.Current[0].Quest.Id
 data remove storage usjm:npc NPCData.Dialogue.Current[0]
 
@@ -22,10 +24,6 @@ data modify storage usjm:index Search.Index set from storage usjm:index quest
 
 data modify storage usjm:index Search.out set value {}
 function usjm-core:index_search
-
-#> 会話
-# 最後の文章に進む
-function usjm-npc:dialogue
 
 #> プレイヤーへ通知
 # 効果音

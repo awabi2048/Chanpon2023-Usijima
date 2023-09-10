@@ -22,7 +22,3 @@ data modify storage usjm:index player.magic[-1].Assignment append value {}
 
 data modify storage usjm:index player.magic[-1].Assignment[-1].MagicId set value "0002-flame"
 data modify storage usjm:index player.magic[-1].Assignment[-1].Id set value 111
-
-
-
-tellraw @s ["Operation: ",{"nbt":"player.magic[-1].Operation","storage":"usjm:index"},", MagicId: ",{"nbt":"player.magic[-1].MagicId","storage":"usjm:index"},"を設定しました。"]
