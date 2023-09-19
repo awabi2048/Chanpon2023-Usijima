@@ -10,14 +10,15 @@ function usjm-npc:tick
 # 例外
 execute as @a[tag=Usjm.Player] at @s if entity @e[tag=Usjm.IgnoreInteraction,distance=..5] anchored eyes run function usjm-core:click_detection/raycast_exception
 
-#> 左右クリック検知
+#> 各種クリック検知
+# 左右クリック検知
 execute as @a[tag=Usjm.Player] at @s unless entity @s[tag=Usjm.Player.BypassInteraction] anchored eyes positioned ^ ^ ^ unless entity @e[tag=Usjm.Interaction,distance=0,scores={Usjm.InteractionTimer=2..}] run function usjm-core:click_detection/summon_interaction
 
 execute at @a[tag=Usjm.Player] as @e[tag=Usjm.Interaction,distance=..64] if score @s Usjm.Link = @p Usjm.UUID run scoreboard players remove @s Usjm.InteractionTimer 1 
 execute at @a[tag=Usjm.Player] as @e[tag=Usjm.Interaction,distance=..64] if score @s Usjm.Link = @p Usjm.UUID if score @s Usjm.InteractionTimer matches ..0 run kill @s
 
 # Qキー押下検知
-execute as @a[tag=Usjm.Player] at @s 
+execute as @a[tag=Usjm.Player] if score @s Usjm.DropKey matches 1.. at @s run function usjm-core:click_detection/q
 
 #> メニュ－
 execute as @a[tag=Usjm.Player.Menu] unless entity @s[tag=Usjm.Player.Menu-Opened] at @s anchored eyes run function usjm-menu:summon

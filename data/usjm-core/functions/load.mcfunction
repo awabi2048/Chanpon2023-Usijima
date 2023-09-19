@@ -20,6 +20,9 @@ scoreboard objectives add Usjm.Temp dummy
 scoreboard objectives add Usjm.Constant dummy
 scoreboard objectives add Usjm.Link dummy
 
+scoreboard objectives add Usjm.Sidebar dummy
+scoreboard objectives add Usjm.DropKey minecraft.custom:drop
+
 scoreboard objectives add Usjm.Sneaking minecraft.custom:sneak_time
 
 scoreboard players set #-1 Usjm.Constant -1

@@ -8,6 +8,8 @@ item replace entity @s weapon.mainhand from entity @e[tag=Usjm.Temp,limit=1] con
 
 kill @e[tag=Usjm.Temp]
 
-# スキル使用
+#> アクティブスキル関連
+# 選択
 execute if predicate usjm:flags/is_sneaking unless entity @s[tag=Usjm.Player-SkillSelect] run function usjm-combat:active_skills/select/start
 
+# 
